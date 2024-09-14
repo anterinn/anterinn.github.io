@@ -1,0 +1,54 @@
+<div class="bg-secondary rounded p-5"> 
+  <h4 class="text-white mb-4">CONTINUE CAR RESERVATION</h4>
+  <form id="bookingForm" action="https://script.google.com/macros/s/AKfycbzbhwloMUwOt9ILlbANCtxbkEoU7t3K8d9VPKnUe8l3egxyL4RNRLiCBbV2SexLJPtGUg/exec" method="post" target="_blank">
+      <div class="row g-3">
+          <div class="col-12">
+              <input class="form-control" type="email" name="nama" placeholder="Masukkan Email" required>
+          </div>
+          <div class="col-12">
+              <select class="form-select" name="jenis-mobil" required>
+                  <option value="" disabled selected>Pilih Jenis Kendaraan</option>
+                  <option value="Mobil Pick up">Mobil Pick up</option>
+                  <option value="Mobil Keluarga">Mobil Keluarga</option>
+              </select>
+          </div>
+          <div class="col-12">
+              <div class="input-group">
+                  <div class="d-flex align-items-center bg-light text-body rounded-start p-2">
+                      <span class="fas fa-map-marker-alt"></span> <span class="ms-1">Pick Up</span>
+                  </div>
+                  <input class="form-control" type="text" name="titik-penjemputan" placeholder="Masukkan Alamat Titik Penjemputan" required>
+              </div>
+          </div>
+          <div class="col-12">
+              <div class="input-group">
+                  <div class="d-flex align-items-center bg-light text-body rounded-start p-2">
+                      <span class="fas fa-map-marker-alt"></span><span class="ms-1">Drop Off</span>
+                  </div>
+                  <input class="form-control" type="text" name="titik-tujuan" placeholder="Masukkan Alamat Tujuan" required>
+              </div>
+          </div>
+          <div class="col-12">
+              <div class="input-group">
+                  <div class="d-flex align-items-center bg-light text-body rounded-start p-2">
+                      <span class="fas fa-calendar-alt"></span><span class="ms-1">Pick Up</span>
+                  </div>
+                  <input class="form-control" type="date" name="tanggal" required>
+                  <input class="form-control ms-3" type="time" name="jam" required>
+              </div>
+          </div>
+          <div class="col-12">
+              <input type="submit" class="btn btn-light w-100 py-2" value="Kirim">
+          </div>
+      </div>
+  </form>
+</div>
+
+<!-- Pindahkan script ke bagian akhir -->
+<script>
+  document.getElementById('bookingForm').onsubmit = function(event) {
+      event.preventDefault(); // Mencegah form dari pengiriman default
+      alert("Booking berhasil disimpan!"); // Menampilkan pesan sukses
+      this.submit(); // Lanjutkan pengiriman form setelah alert
+  };
+</script>
