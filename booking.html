@@ -112,7 +112,7 @@
                                     <div class="col-lg-6 fadeInLeft animated" data-animation="fadeInLeft" data-delay="1s" style="animation-delay: 1s;">
                                         <div class="bg-secondary rounded p-5"> 
                                             <h4 class="text-white mb-4">Segera booking sekarang:</h4>
-                                            <form id="bookingForm" action="https://script.google.com/macros/s/AKfycbzbhwloMUwOt9ILlbANCtxbkEoU7t3K8d9VPKnUe8l3egxyL4RNRLiCBbV2SexLJPtGUg/exec" method="post" target="index.html">
+                                            <form id="bookingForm" action="https://script.google.com/macros/s/AKfycbypFjdyyY-2FiTmUPyzKCn9S07tZe5v-pnEeczQa10TqX7PFz-NrszA6A8fcjz2IXIH/exec" method="post">
                                                 <div class="row g-3">
                                                     <!-- Nama -->
                                                     <div class="col-12">
@@ -170,7 +170,6 @@
                                                 </div>
                                             </form>
                                         </div>
-
                                         <!-- Modal Overlay -->
                                          <div class="modal-overlay" id="modalOverlay">
                                             <div class="modal-box">
@@ -247,23 +246,45 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-     <script>
-    document.getElementById('bookingForm').onsubmit = function(event) {
-        event.preventDefault(); // Mencegah form dari pengiriman default
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('bookingForm').onsubmit = function(event) {
+                event.preventDefault(); // Mencegah form dari pengiriman default
+                alert("Booking berhasil disimpan!"); // Menampilkan pesan sukses
+                this.submit(); // Lanjutkan pengiriman form setelah alert
+                // window.location.href
+                window.location.href = 'index.html'; // Redirect setelah submit
+            };
+        });
+    </script> -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('bookingForm').onsubmit = function(event) {
+                event.preventDefault(); // Mencegah form dari pengiriman default
 
-        // Menampilkan modal alert custom
-        document.getElementById('modalOverlay').classList.add('show');
-        
-          // Event listener untuk tombol OK di modal
-    document.getElementById('closeModal').onclick = function() {
-        // Menyembunyikan modal setelah diklik
-        document.getElementById('modalOverlay').classList.remove('show');
+                // Mengirim form data menggunakan Fetch API
+                fetch(this.action, {
+                    method: 'POST',
+                    body: new FormData(this),
+                })
+                .then(response => response.text())
+                .then(data => {
+                    // Menampilkan modal berwarna custom
+                    document.getElementById('modalOverlay').classList.add('show');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            };
 
-        // Redirect ke halaman index.html setelah modal ditutup
-        window.location.href = 'index.html';
-    };
-    };
+            // Event listener untuk tombol OK di modal
+            document.getElementById('closeModal').onclick = function() {
+                document.getElementById('modalOverlay').classList.remove('show');
+                window.location.href = 'index.html'; // Redirect ke halaman index setelah modal ditutup
+            };
+        });
     </script>
+
     </body>
 
 </html>
